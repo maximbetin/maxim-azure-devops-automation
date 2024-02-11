@@ -60,3 +60,12 @@ python3 scripts/main.py
 
 ## Contact
 (Your contact information or that of the project maintainer.)
+
+## TODO:
+Write TF Code to deploy a VM
+Deploy a SA to manage state
+Write Ansible Code to configure the VM
+Encrypt Ansible variables
+Write code to create Azure Repos, Azure Pipelines
+Configure the Pipeline to deploy to a VM
+Script to destroy the unneeded stuff
