@@ -15,8 +15,8 @@ This project automates the creation of Azure DevOps projects using Python. It le
 ### 1. Clone the Repository
 Start by cloning this repository to your local machine:
 ```
-git clone https://yourrepositoryurl.git
-cd azure-devops-automation
+git clone https://github.com/maximbetin/maxim-azure-devops-automation
+cd maxim-azure-devops-automation
 ```
 
 ### 2. Install Python Dependencies
