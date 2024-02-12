@@ -1,0 +1,3 @@
+# Specifies the backend server URL that this particular reverse proxy (webserver01) will forward traffic to.
+# In a real-world scenario, this could point to an internal application server or a load balancer distributing traffic across multiple servers.
+# backend_server_url: "http://<backend_server_ip_or_hostname>/"

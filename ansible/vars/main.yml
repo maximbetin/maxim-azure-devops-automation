@@ -1,0 +1,14 @@
+# Define variables specific to the apache-reverse-proxy role that may vary between different environments or deployments.
+
+# backend_server_url: The URL of the backend server that the reverse proxy will forward requests to. 
+# This is typically an internal service or a load balancer in front of multiple services.
+# In a live environment, replace the placeholder with the actual URL of your backend service.
+# Example:
+# backend_server_url: "http://<actual_backend_service_url>/"
+
+# apache_listen_port: The port on which Apache listens for incoming traffic. 
+# While 80 is common for HTTP, you might use 443 for HTTPS in production environments with SSL/TLS configuration.
+# Example for demonstration:
+# apache_listen_port: 80
+
+# Use these variables in your role's tasks where appropriate to configure Apache based on your specific requirements.

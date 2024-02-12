@@ -1,0 +1,5 @@
+<VirtualHost *:{{ apache_listen_port }}>
+    ProxyPreserveHost On
+    ProxyPass / {{ backend_server_url }}
+    ProxyPassReverse / {{ backend_server_url }}
+</VirtualHost>

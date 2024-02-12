@@ -1,0 +1,6 @@
+---
+- name: Setup Apache Reverse Proxy on Staging Web Servers
+  hosts: webserver
+  become: yes
+  roles:
+    - apache-reverse-proxy

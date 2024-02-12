@@ -1,66 +1,88 @@
-# Configuring the Infrastructure with Ansible
+# Configuring Infrastructure with Ansible
 
 ## Overview
 
-This project leverages Ansible to automate the deployment and configuration of a Virtual Machine in Azure, transforming it into an efficient Reverse Proxy via Apache. This setup is designed to streamline web traffic management, directing requests to a designated backend server seamlessly.
+This project uses Ansible to automate the deployment and configuration of a Virtual Machine in Azure, setting it up as an Apache-based Reverse Proxy. This setup is designed to efficiently manage web traffic by directing requests to a designated backend server.
 
 ## Prerequisites
 
-- An Ubuntu VM (22.04) designated for Apache installation.
-- Ansible installed on your control machine, facilitating automation. [Installation Guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#pipx-install)
-- SSH access configured for the Ubuntu VM, ensuring secure command execution.
-- The IP address or hostname of your backend server, critical for reverse proxy setup.
+- **Ansible Installation**: Ensure Ansible is installed on your machine. [Installation Guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
+- **SSH Access**: Configured for the Ubuntu VM to ensure secure command execution.
+- **Azure CLI Installation**: Useful for managing Azure resources directly if necessary. [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+
+## Project Structure
+
+The project is organized for easy management and scalability, featuring:
+
+- **`ansible.cfg`**: Configuration file for Ansible, defining global settings.
+- **`inventories/`**: 
+  - Contains inventory files for different environments (e.g., staging).
+  - **`staging/`**: 
+    - **`hosts`**: Defines VMs in the staging environment.
+    - **`group_vars/`**: Contains variables applicable to groups of hosts.
+    - **`host_vars/`**: Stores variables specific to individual hosts.
+- **`playbooks/`**: 
+  - Holds Ansible playbooks, such as `setup-reverse-proxy.yml` for configuring Apache as a Reverse Proxy.
+- **`roles/`**: 
+  - Houses reusable roles for specific tasks, including the `apache-reverse-proxy` role with tasks, templates, default variables, and variable descriptions.
+
+## Variables and Sensitive Data Handling
+
+Variables enable playbook customization without altering main configurations, with sensitive data handled securely:
+
+### Defining Variables
+
+- **`roles/apache-reverse-proxy/defaults/main.yml`**: Specifies default values for the role.
+- **`roles/apache-reverse-proxy/vars/main.yml`**: (For demonstration) Includes block comments describing possible scenarios for variable usage.
+- **`group_vars/`** and **`host_vars/`**: Define environment or host-specific variables to fine-tune role behavior without direct playbook modifications.
+
+### Handling Sensitive Data
+
+- **Ansible Vault**: Encrypts sensitive variables (e.g., backend server URLs, SSH keys) to secure them within your project.
 
 ## Getting Started
 
-### 1. Install Ansible
-
-First, ensure Ansible is installed on your control machine. This can typically be accomplished using your distribution's package manager. For Ubuntu/Debian systems:
+### 1. Clone the Repository
 
 ```bash
-sudo apt update
-sudo apt install ansible
+git clone https://github.com/maximbetin/maxim-azure-devops-automation.git
+cd maxim-azure-devops-automation/ansible
 ```
 
-### 2. Configure Ansible Inventory
+### 2. Configure SSH Access
 
-Next, prepare your inventory by creating a file named `inventory.ini` and populating it as follows:
+Set up your SSH keys and configure `known_hosts` for secure connections to Azure VMs.
 
-```ini
-[webserver]
-your_vm_ip ansible_user=your_vm_ssh_user ansible_ssh_private_key_file=/path/to/your/private/key
-```
+### 3. Review and Update Inventory
 
-Adjust `your_vm_ip`, `your_vm_ssh_user`, and `/path/to/your/private/key` to match your specific setup.
+Adjust `inventories/staging/hosts` with the IP addresses and SSH details of your Azure VMs.
 
-### 3. Develop the Ansible Playbook
+### 4. Set Environment Variables (If Necessary)
 
-This playbook is designed to automate the Apache installation and its configuration as a Reverse Proxy. Replace `http://your_vm_ip/` with your actual backend server's URL or IP address in the playbook's reverse proxy configuration section.
-
-### 4. Execute the Playbook
-
-Deploy the configuration by running the playbook with this command:
+If encountering issues with `ansible.cfg` not being recognized, set the `ANSIBLE_ROLES_PATH` environment variable:
 
 ```bash
-ansible-playbook -i inventory.ini setup-reverse-proxy.yml
+export ANSIBLE_ROLES_PATH=$(pwd)/roles
 ```
 
-This initiates the automation process, installing and configuring Apache on your Ubuntu VM as outlined in the playbook.
+This command temporarily sets the roles path for the current terminal session. For persistent changes, add it to your shell profile (e.g., `.bashrc` or `.zshrc`).
 
-## Detailed Playbook Description
+### 5. Execute the Playbook
 
-This playbook executes several key tasks to configure Apache as a Reverse Proxy on a Debian-based web server:
+```bash
+ansible-playbook -i inventories/staging/hosts playbooks/setup-reverse-proxy.yml
+```
 
-- **Install Apache**: Verifies and installs Apache (`apache2` package) if it's not already present, targeting Debian-based systems specifically.
-- **Enable Apache Modules**: Automates the activation of `mod_proxy` and `mod_proxy_http` modules, essential for reverse proxy functionality.
-- **Configure Apache Service**: Ensures Apache starts at boot and remains active, leveraging the `ansible.builtin.systemd` module for service management.
-- **Apply Reverse Proxy Configuration**: Injects a predefined configuration block into `/etc/apache2/sites-available/000-default.conf`, directing HTTP requests to the specified backend server.
-- **Restart Apache**: Utilizes a handler to restart Apache if configuration changes are made, applying the new settings immediately.
+This command configures your VM as an Apache Reverse Proxy according to the playbook specifications.
 
-## Verification
+### 6. Verify the Configuration
 
-Confirm the successful configuration by accessing your VM's IP address in a browser. The expected result is the content from your backend server being served through the Apache Reverse Proxy, demonstrating the playbook's effectiveness.
+Access your VM's IP address or domain name in a web browser to confirm the reverse proxy setup.
 
-## Disclaimer
+## Collaboration and Best Practices
 
-**Recommended Approach:** While executing the playbook, ensure that you have a secure connection to your Azure VM, preferably through a Jump/Bastion host or VPN to maintain security and efficiency. Direct SSH access from the public internet to your VM should be avoided to minimize security risks.
+- **Version Control**: Use Git to track and manage changes.
+- **Ansible Best Practices**: Follow guidelines for playbook and role development to ensure project maintainability and scalability.
+- **Sensitive Data Management**: Secure sensitive data with Ansible Vault and avoid embedding secrets directly in playbooks or inventory files.
+
+Refer to the [Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html) for comprehensive instructions and best practices.
