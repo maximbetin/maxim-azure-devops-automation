@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project uses Terraform to provision a virtual machine (VM) in Azure, alongside necessary networking components.
+This project uses Terraform to provision a Virtual Machine in Azure, alongside necessary networking components.
 
 ## Prerequisites
 

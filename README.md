@@ -6,9 +6,9 @@ This project automates the creation of Azure DevOps projects using Python. It le
 ## Prerequisites
 - Azure DevOps account
 - Azure subscription
-- Python 3.6 or later
-- Terraform 0.12 or later
-- Ansible 2.9 or later
+- Python 3.12 or later
+- Terraform 0.13 or later
+- Ansible Core 2.16 or later
 
 ## Getting Started
 
@@ -44,7 +44,6 @@ See the README.md located at [/ansible/README.md](/ansible/README.md).
 See the README.md located at [/pipelines/README.md](/pipelines/README.md).
 
 ## TODO:
-Write Ansible Code to configure the VM
 Encrypt Ansible variables
 Write code to create Azure Repos, Azure Pipelines
 Configure the Pipeline to deploy to a VM
