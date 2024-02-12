@@ -14,8 +14,8 @@ This project automates the creation of Azure DevOps projects using Python. It le
 
 ### 1. Clone the Repository
 Start by cloning this repository to your local machine:
-```
-git clone https://github.com/maximbetin/maxim-azure-devops-automation
+```bash
+git clone https://github.com/maximbetin/maxim-azure-devops-automation.git
 cd maxim-azure-devops-automation
 ```
 
@@ -44,7 +44,8 @@ python3 scripts/main.py
 ```
 
 ### Provisioning Infrastructure with Terraform
-(Step-by-step commands to use Terraform for provisioning Azure resources.)
+
+See the README.md located at [./terraform/README.md](./terraform/README.md).
 
 ### Configuring Infrastructure with Ansible
 (Commands to run Ansible playbooks for configuring the provisioned infrastructure.)
@@ -62,7 +63,6 @@ python3 scripts/main.py
 (Your contact information or that of the project maintainer.)
 
 ## TODO:
-Write TF Code to deploy a VM
 Deploy a SA to manage state
 Write Ansible Code to configure the VM
 Encrypt Ansible variables

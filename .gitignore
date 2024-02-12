@@ -3,3 +3,8 @@
 .env
 __pycache__
 venv/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraform.lock.hcl
