@@ -42,9 +42,3 @@ See the README.md located at [/ansible/README.md](/ansible/README.md).
 
 ### 7. Set up CI/CD with Azure Pipelines
 See the README.md located at [/pipelines/README.md](/pipelines/README.md).
-
-## TODO:
-Encrypt Ansible variables
-Write code to create Azure Repos, Azure Pipelines
-Configure the Pipeline to deploy to a VM
-Script to destroy the unneeded stuff
