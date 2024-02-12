@@ -23,23 +23,32 @@ resource "azurerm_subnet" "subnet" {
 
 # Network Interface Configuration
 resource "azurerm_network_interface" "interface" {
-  name                = "${var.prefix}-nic"
+  name                = "${var.prefix}-interface"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
-    name                          = "internal"
+    name                          = "${var.prefix}-ip-config"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.public_ip.id
   }
+}
+
+# Public IP Configuration
+resource "azurerm_public_ip" "public_ip" {
+  name                = "${var.prefix}-public-ip"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  allocation_method   = "Dynamic"
 }
 
 # VM Configuration
 resource "azurerm_virtual_machine" "vm" {
   name                  = "${var.prefix}-vm"
-  location              = azurerm_resource_group.example.location
-  resource_group_name   = azurerm_resource_group.example.name
-  network_interface_ids = [azurerm_network_interface.nic.id]
+  location              = azurerm_resource_group.rg.location
+  resource_group_name   = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.interface.id]
   vm_size               = "Standard_B1s"
 
   # Delete the OS and data disks when the VM is deleted
@@ -56,7 +65,7 @@ resource "azurerm_virtual_machine" "vm" {
 
   # Define the operating system disk
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "${var.prefix}-os-disk"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"

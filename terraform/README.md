@@ -6,7 +6,7 @@ This project uses Terraform to provision a virtual machine (VM) in Azure, alongs
 
 ## Prerequisites
 
-- **Install [Terraform](https://www.terraform.io/downloads.html)**: Ensure you have Terraform installed on your machine (version >= 1.7.3 recommended).
+- **Install [Terraform](https://www.terraform.io/downloads.html)**: Ensure you have Terraform installed on your machine (version >= 0.13 recommended).
 - **Install [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)**: Used for authenticating with Azure from your local machine.
 
 ## Project Structure
@@ -108,3 +108,48 @@ Confirm the action by typing `yes` when prompted.
 ### Step 7: Access Your Resources
 
 Once Terraform successfully applies your configuration, you can access and manage your Azure resources through the [Azure Portal](https://portal.azure.com) or using the Azure CLI.
+
+## Managing State in Team Environments
+
+In real-world scenarios, when working with Terraform in a team, it's essential to manage the state file in a way that promotes collaboration, prevents conflicts, and secures sensitive data.
+
+### Remote State Backend
+
+The recommended approach is to use a remote backend compatible with our cloud provider. This allows us to store the state file in a centralized, shared location, such as Azure Blob Storage.
+
+### Configuration Example (Azure Blob Storage)
+
+To configure Azure Blob Storage as the backend:
+
+1. Create a storage account and container in Azure.
+2. Add the backend configuration to your Terraform files:
+
+    ```hcl
+    terraform {
+      backend "azurerm" {
+        resource_group_name   = "MyResourceGroup"
+        storage_account_name  = "mystorageaccount"
+        container_name        = "tfstate"
+        key                   = "terraform.tfstate"
+      }
+    }
+    ```
+
+3. Run `terraform init` to initialize the backend.
+
+### State Locking and Security
+
+- **State Locking**: Ensure your backend supports state locking to prevent concurrent state operations that could lead to conflicts.
+- **Security**: Configure access controls to ensure only authorized team members can access the state file. Encrypt the backend to protect sensitive data contained in the state.
+
+### Versioning
+
+Enable versioning on your backend to keep a history of state changes, facilitating easier rollbacks if necessary.
+
+### Best Practices
+
+- **Access Control**: Use your cloud provider's access management tools to restrict access to the state file.
+- **Sensitive Data**: Be mindful of sensitive data in your state file. Use encryption and secure access patterns.
+- **Collaboration**: Use workspaces and modules to organize resources and collaborate effectively within your team.
+
+For more detailed instructions and best practices, refer to the official [Terraform documentation](https://www.terraform.io/docs).
