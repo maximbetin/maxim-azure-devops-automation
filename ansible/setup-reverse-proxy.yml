@@ -1,0 +1,44 @@
+---
+- name: Configure Apache as a Reverse Proxy
+  hosts: webserver
+  become: yes  # Use sudo
+  tasks:
+    - name: Install Apache
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Enable mod_proxy module
+      ansible.builtin.command:
+        cmd: a2enmod proxy
+      notify: restart apache
+
+    - name: Enable mod_proxy_http module
+      ansible.builtin.command:
+        cmd: a2enmod proxy_http
+      notify: restart apache
+
+    - name: Enable and start Apache service
+      ansible.builtin.systemd:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Configure Apache as a Reverse Proxy
+      ansible.builtin.blockinfile:
+        path: /etc/apache2/sites-available/000-default.conf
+        block: |
+          <VirtualHost *:80>
+              ProxyPreserveHost On
+              ProxyPass / http://104.45.8.2/
+              ProxyPassReverse / http://104.45.8.2/
+          </VirtualHost>
+        create: yes
+      notify: restart apache
+
+  handlers:
+    - name: restart apache
+      ansible.builtin.systemd:
+        name: apache2
+        state: restarted
