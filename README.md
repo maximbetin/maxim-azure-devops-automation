@@ -10,7 +10,7 @@ This project automates the creation of Azure DevOps projects using Python. It le
 - Terraform 0.12 or later
 - Ansible 2.9 or later
 
-## Setup Instructions
+## Getting Started
 
 ### 1. Clone the Repository
 Start by cloning this repository to your local machine:
@@ -26,44 +26,24 @@ pip install -r requirements.txt
 ```
 
 ### 3. Configure Azure Credentials
-- Generate a Personal Access Token (PAT) in Azure DevOps with appropriate permissions.
-- Configure environment variables for your Azure and Azure DevOps credentials, or update the `config.py` file with your credentials (ensure not to commit sensitive information).
+- Generate a Personal Access Token (PAT) in Azure DevOps with appropriate permissions through the [Azure DevOps Portal](https://dev.azure.com/)
 
-### 4. Initialize Terraform
-(Provide instructions on initializing Terraform for your project, including setting up any required Azure service principal and configuring backend storage for Terraform state files.)
-
-### 5. Ansible Configuration
-(Instructions on how to set up Ansible for configuring Azure VMs or services, including any required SSH key generation and inventory setup.)
-
-## Usage
-
-### Creating an Azure DevOps Project
+### 4. Create an Azure DevOps Project
 Run the Python script to create a new Azure DevOps project:
 ```
 python3 scripts/main.py
 ```
 
-### Provisioning Infrastructure with Terraform
+### 5. Provision the Infrastructure with Terraform
+See the README.md located at [/terraform/README.md](/terraform/README.md).
 
-See the README.md located at [./terraform/README.md](./terraform/README.md).
+### 6. Configure the Infrastructure with Ansible
+See the README.md located at [/ansible/README.md](/ansible/README.md).
 
-### Configuring Infrastructure with Ansible
-(Commands to run Ansible playbooks for configuring the provisioned infrastructure.)
-
-### Setting up CI/CD with Azure Pipelines
-(Instructions on how to configure Azure Pipelines for continuous integration and delivery, including linking to the YAML pipeline files.)
-
-## Contributing
-(Information on how others can contribute to the project, including coding standards, commit message guidelines, and pull request processes.)
-
-## License
-(Your project's license information, if applicable.)
-
-## Contact
-(Your contact information or that of the project maintainer.)
+### 7. Set up CI/CD with Azure Pipelines
+See the README.md located at [/pipelines/README.md](/pipelines/README.md).
 
 ## TODO:
-Deploy a SA to manage state
 Write Ansible Code to configure the VM
 Encrypt Ansible variables
 Write code to create Azure Repos, Azure Pipelines
