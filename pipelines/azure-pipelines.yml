@@ -1,0 +1,22 @@
+# The environment in which the pipeline will run in (Ubuntu latest version)
+pool:
+  vmImage: 'ubuntu-latest'
+
+# The trigger for the pipeline to run when a change is made to the main branch
+trigger:
+  branches:
+    include:
+    - main
+
+# The steps that the pipeline will run through
+steps:
+
+# The first step will a one-line script
+  displayName: 'Run a one-line script'
+  script: echo Hello, world!
+
+# The second step will be a multi-line script
+- displayName: 'Run a multi-line script':
+  script: |
+    echo Add other commands here
+    echo Use multiline scripts if needed
