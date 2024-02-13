@@ -6,7 +6,7 @@ pool:
 trigger:
   branches:
     include:
-    - main
+    - master
 
 # The steps that the pipeline will run through
 steps:
