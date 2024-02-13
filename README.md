@@ -6,7 +6,7 @@ This project automates the creation of Azure DevOps projects using Python. It le
 ## Prerequisites
 - Azure DevOps account
 - Azure subscription
-- Python 3.12 or later
+- Python 3.10 or later
 - Terraform 0.13 or later
 - Ansible Core 2.16 or later
 
@@ -19,26 +19,17 @@ git clone https://github.com/maximbetin/maxim-azure-devops-automation.git
 cd maxim-azure-devops-automation
 ```
 
-### 2. Install Python Dependencies
-Install the required Python packages by running:
-```
-pip install -r requirements.txt
-```
-
-### 3. Configure Azure Credentials
+### 2. Configure Azure Credentials
 - Generate a Personal Access Token (PAT) in Azure DevOps with appropriate permissions through the [Azure DevOps Portal](https://dev.azure.com/)
 
-### 4. Create an Azure DevOps Project
-Run the Python script to create a new Azure DevOps project:
-```
-python3 scripts/main.py
-```
+### 3. Azure DevOps Automation with Python
+See the README.md located at [/python/README.md](/python/README.md).
 
-### 5. Provision the Infrastructure with Terraform
+### 4. Provision the Infrastructure with Terraform
 See the README.md located at [/terraform/README.md](/terraform/README.md).
 
-### 6. Configure the Infrastructure with Ansible
+### 5. Configure the Infrastructure with Ansible
 See the README.md located at [/ansible/README.md](/ansible/README.md).
 
-### 7. Set up CI/CD with Azure Pipelines
-See the README.md located at [/pipelines/README.md](/pipelines/README.md).
+### 6. Set up CI/CD with Azure Pipelines
+See the README.md located at [/pipelines/README.md](/scripts/pipelines/README.md).

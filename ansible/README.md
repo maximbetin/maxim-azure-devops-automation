@@ -42,22 +42,15 @@ Variables enable playbook customization without altering main configurations, wi
 
 ## Getting Started
 
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/maximbetin/maxim-azure-devops-automation.git
-cd maxim-azure-devops-automation/ansible
-```
-
-### 2. Configure SSH Access
+### 1. Configure SSH Access
 
 Set up your SSH keys and configure `known_hosts` for secure connections to Azure VMs.
 
-### 3. Review and Update Inventory
+### 2. Review and Update Inventory
 
 Adjust `inventories/staging/hosts` with the IP addresses and SSH details of your Azure VMs.
 
-### 4. Set Environment Variables (If Necessary)
+### 3. Set Environment Variables (If Necessary)
 
 If encountering issues with `ansible.cfg` not being recognized, set the `ANSIBLE_ROLES_PATH` environment variable:
 
@@ -67,7 +60,7 @@ export ANSIBLE_ROLES_PATH=$(pwd)/roles
 
 This command temporarily sets the roles path for the current terminal session. For persistent changes, add it to your shell profile (e.g., `.bashrc` or `.zshrc`).
 
-### 5. Execute the Playbook
+### 4. Execute the Playbook
 
 ```bash
 ansible-playbook -i inventories/staging/hosts playbooks/setup-reverse-proxy.yml
@@ -75,7 +68,7 @@ ansible-playbook -i inventories/staging/hosts playbooks/setup-reverse-proxy.yml
 
 This command configures your VM as an Apache Reverse Proxy according to the playbook specifications.
 
-### 6. Verify the Configuration
+### 5. Verify the Configuration
 
 Access your VM's IP address or domain name in a web browser to confirm the reverse proxy setup.
 

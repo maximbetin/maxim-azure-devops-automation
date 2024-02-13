@@ -60,16 +60,7 @@ Variables are defined in `variables.tf` with possible descriptions and default v
    az account set --subscription YOUR_SUBSCRIPTION_ID
    ```
 
-### Step 2: Clone the Repository
-
-Clone this repository to your local machine and navigate into the project directory.
-
-```bash
-git clone https://github.com/maximbetin/maxim-azure-devops-automation.git
-cd maxim-azure-devops-automation/terraform
-```
-
-### Step 3: Configure Environment Variables
+### Step 2: Configure Environment Variables
 
 Set environment variables for sensitive data such as the admin password for the VM. Replace `YourSecurePasswordHere` with your actual password.
 
@@ -79,7 +70,7 @@ export TF_VAR_admin_password="YourSecurePasswordHere"
 
 **Note**: For Windows Command Prompt, use `set` instead of `export`. For PowerShell, use `$env:TF_VAR_admin_password="YourSecurePasswordHere"`.
 
-### Step 4: Initialize Terraform
+### Step 3: Initialize Terraform
 
 Run the following command to initialize the Terraform workspace, which will download the necessary providers and set up the environment.
 
@@ -87,7 +78,7 @@ Run the following command to initialize the Terraform workspace, which will down
 terraform init
 ```
 
-### Step 5: Plan the Deployment
+### Step 4: Plan the Deployment
 
 Generate and review an execution plan to see what Terraform will do before making any changes to your infrastructure.
 
@@ -95,7 +86,7 @@ Generate and review an execution plan to see what Terraform will do before makin
 terraform plan
 ```
 
-### Step 6: Apply the Configuration
+### Step 5: Apply the Configuration
 
 Apply the Terraform configuration to create resources in Azure. Terraform will prompt you for confirmation before proceeding.
 
@@ -105,7 +96,7 @@ terraform apply
 
 Confirm the action by typing `yes` when prompted.
 
-### Step 7: Access Your Resources
+### Step 6: Access Your Resources
 
 Once Terraform successfully applies your configuration, you can access and manage your Azure resources through the [Azure Portal](https://portal.azure.com) or using the Azure CLI.
 

@@ -9,3 +9,4 @@ venv/
 *.tfvars
 .terraform.lock.hcl
 planfile
+.pytest_cache
