@@ -32,4 +32,4 @@ See the README.md located at [/terraform/README.md](/terraform/README.md).
 See the README.md located at [/ansible/README.md](/ansible/README.md).
 
 ### 6. Set up CI/CD with Azure Pipelines
-See the README.md located at [/pipelines/README.md](/scripts/pipelines/README.md).
+See the README.md located at [/pipelines/README.md](/python/pipelines/README.md).
