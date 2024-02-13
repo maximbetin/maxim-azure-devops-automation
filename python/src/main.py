@@ -14,8 +14,8 @@ def setup_logging():
     logging.basicConfig(level=logging.INFO, format=logging_format)
 
 def main():
-    """Main entry point of the script."""
     setup_logging()
+    """Main entry point of the script."""
     logging.debug('Starting script...')
 
     logging.info('Initiating project creation...')
@@ -32,17 +32,13 @@ def main():
         PROJECT_NAME,
         REPOSITORY_NAME
     )
-
-    if repository_id is None:
-        logging.error('Failed to create repository. Exiting...')
-        return
     
     logging.info('Initiating pipeline creation...')
     create_pipeline(
         ORGANIZATION_NAME,
         PROJECT_NAME,
         REPOSITORY_NAME,
-        repository_id
+        repository_id # type: ignore
     )
 
     logging.debug('Script execution completed.')
