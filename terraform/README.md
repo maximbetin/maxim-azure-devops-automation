@@ -144,3 +144,6 @@ Enable versioning on your backend to keep a history of state changes, facilitati
 - **Collaboration**: Use workspaces and modules to organize resources and collaborate effectively within your team.
 
 For more detailed instructions and best practices, refer to the official [Terraform documentation](https://www.terraform.io/docs).
+
+# TODO
+Showcase the use of state files in backend?

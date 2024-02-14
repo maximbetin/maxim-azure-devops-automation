@@ -72,7 +72,7 @@ Unit tests are provided in the `tests/` directory. To run the tests, ensure you 
 pytest tests/
 ```
 
-# TODO:
+# TODO
 Implement proper retry logic
 Make the code more modular
 Fix Pipeline Creation
