@@ -76,3 +76,5 @@ pytest tests/
 Implement proper retry logic
 Make the code more modular
 Fix Pipeline Creation
+Improve tests
+Use venv
