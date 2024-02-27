@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "value": "maximazurermtestsa"
+            "value": "<storage-account-name>"
         },
         "location": {
-            "value": "westeurope"
+            "value": "<location>"
         }
     }
 }
