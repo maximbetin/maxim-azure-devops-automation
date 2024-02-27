@@ -88,7 +88,7 @@ Connect-AzAccount
 2. **Deploy the ARM template** to your resource group.
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -TemplateFile ".\azure-arm\azuredeploy.json" -TemplateParameterFile ".\azure-arm\azuredeploy.parameters.json"
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -TemplateFile ".\azure-rm\azuredeploy.json" -TemplateParameterFile ".\azure-rm\azuredeploy.parameters.json"
 ```
 
 ### Verification
